@@ -8,15 +8,17 @@ if(empty($_SESSION['logado'])) {
 }
 
 $email = '';
+$codigo= '';
 
-
-$sql = "SELECT email FROM usuarios WHERE id = '".addslashes($_SESSION['logado'])."'";
+$sql = "SELECT email, codigo FROM usuarios WHERE id = '".addslashes($_SESSION['logado'])."'";
 $sql = $pdo->query($sql);
 if($sql->rowCount() > 0) {
 	$info = $sql->fetch();
 	$email = $info['email'];
-	//$codigo = $info['codigo'];
+	$codigo = $info['codigo'];
 }
 ?>
 <h1>Área interna do sistema</h1>
 <p>Usuário: <?php echo $email; ?> - <a href="sair.php">Sair</a></p>
+
+<p>Link: http://localhost/registroConvite/cadastrar.php?codigo=<?php echo $codigo; ?></p>
