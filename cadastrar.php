@@ -2,7 +2,12 @@
 session_start();
 require 'config.php';
 
-
+if (!empty($_GET['codigo'])) {
+    
+} else {
+    header("Location: login.php");
+    exit;
+}
 
 if(!empty($_POST['email'])) {
     $email = addslashes($_POST['email']);
