@@ -6,7 +6,12 @@ if (!empty($_GET['codigo'])) {
     $codigo = addslashes($_GET['codigo']);
     
     $sql = "SELECT * FROM usuarios WHERE codigo = '$codigo'";
+    $sql = $pdo->query($sql);
     
+    if($sql->rowCount() == 0){
+        header("Location: login.php");
+        exit;
+    }
 } else {
     header("Location: login.php");
     exit;
